@@ -1,6 +1,7 @@
 <?php
 namespace PhpSpec\ZendFramework2\Listener;
 
+use PhpSpec\Event\ExampleEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use PhpSpec\Event\SpecificationEvent;
 use Zend\ServiceManager\ServiceManager;
@@ -26,9 +27,10 @@ class ZendFramework2Listener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'beforeSpecification' => array('beforeSpecification', 1)
+            'beforeSpecification' => ['beforeSpecification', 1],
         );
     }
+
 
     /**
      * Run the `beforeSpecification` hook.
@@ -39,6 +41,6 @@ class ZendFramework2Listener implements EventSubscriberInterface
     public function beforeSpecification(SpecificationEvent $event)
     {
         $spec = $event->getSpecification();
-        // get wrapped object?
+        $refl = $spec->getClassReflection();
     }
 }

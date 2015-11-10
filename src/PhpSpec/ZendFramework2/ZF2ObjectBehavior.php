@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpSpec\ZendFramework2;
 
 use PhpSpec\ObjectBehavior;

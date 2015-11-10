@@ -1,4 +1,5 @@
 <?php
+
 namespace PhpSpec\ZendFramework2\Runner\Maintainer;
 
 use PhpSpec\Loader\Node\ExampleNode;
@@ -10,7 +11,7 @@ use Zend\ServiceManager\ServiceManager;
 
 /**
  * This maintainer is used to bind the ZF2 wrapper to nodes that implement
- * the `setLaravel` method.
+ * the `setServiceLocator` method.
  */
 class ServiceManagerMaintainer implements MaintainerInterface
 {
