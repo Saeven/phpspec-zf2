@@ -1,0 +1,35 @@
+{
+    "name":         "saeven/phpspec-zf2",
+    "description":  "ZF2 module that lets you bring the ZF2 service manager (and more) into your phpspec 2 tests",
+    "type":         "library",
+    "license":      "MIT",
+    "homepage":     "https://github.com/Saeven/phpspec-zf2",
+    "keywords": [
+        "zf2",
+        "phpspec",
+        "zend framework",
+        "service manager"
+    ],
+    "authors": [
+        {
+            "name":      "Alexandre Lemaire",
+            "email":     "alemaire@circlical.com",
+            "homepage":  "http://circlical.com/",
+            "role":      "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5"
+    },
+    "autoload": {
+        "psr-0": {
+            "PhpSpec": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
