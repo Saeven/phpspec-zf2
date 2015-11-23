@@ -41,44 +41,45 @@ Then, describe your object, and make its specification extend PhpSpec\ZendFramew
 
 I have a Form factory for example, and wanted to test its implementation of MutableCreationOptionsInterface.  Based on whether or not I give it a 'captcha' parameter of true, it should, or shouldn't have a captcha element in the form it returns.  I test that with this specification:
 
-  <?php
-  
-  namespace Spec\CirclicalUser\Factory\Form;
-  
-  use CirclicalUser\InputFilter\UserInputFilter;
-  use PhpSpec\ZendFramework2\ZF2ObjectBehavior;
-  use Prophecy\Argument;
-  
-  class UserFormFactorySpec extends ZF2ObjectBehavior
-  {
-      function it_is_initializable()
-      {
-          $this->shouldHaveType('CirclicalUser\Factory\Form\UserFormFactory');
-      }
-  
-      function its_factory_works()
-      {
-          $this->createService( $this->getServiceLocator()->get('FormElementManager') )->shouldBeAnInstanceOf( \CirclicalUser\Form\UserForm::class );
-      }
-  
-      function it_can_create_forms_without_captcha()
-      {
-          $this->setCreationOptions(['captcha' => false, 'country' => 'US' ]);
-          $ret = $this->createService( $this->getServiceLocator()->get('FormElementManager') );
-          $ret->shouldBeAnInstanceOf( \CirclicalUser\Form\UserForm::class );
-          $ret->getInputFilter()->shouldBeAnInstanceOf( UserInputFilter::class );
-          $ret->getInputFilter()->shouldThrow( \Zend\InputFilter\Exception\InvalidArgumentException::class )->during( 'get', ['g-recaptcha-response'] );
-      }
-  
-      function it_can_create_forms_with_captcha()
-      {
-          $this->setCreationOptions(['captcha' => true, 'country' => 'US' ]);
-          $ret = $this->createService( $this->getServiceLocator()->get('FormElementManager') );
-          $ret->shouldBeAnInstanceOf( \CirclicalUser\Form\UserForm::class );
-          $ret->getInputFilter()->shouldBeAnInstanceOf( UserInputFilter::class );
-          $ret->getInputFilter()->get('g-recaptcha-response')->shouldBeAnInstanceOf( \Zend\InputFilter\Input::class );
-      }
-  }
+```
+<?php
 
+namespace Spec\CirclicalUser\Factory\Form;
+
+use CirclicalUser\InputFilter\UserInputFilter;
+use PhpSpec\ZendFramework2\ZF2ObjectBehavior;
+use Prophecy\Argument;
+
+class UserFormFactorySpec extends ZF2ObjectBehavior
+{
+    function it_is_initializable()
+    {
+        $this->shouldHaveType('CirclicalUser\Factory\Form\UserFormFactory');
+    }
+
+    function its_factory_works()
+    {
+        $this->createService( $this->getServiceLocator()->get('FormElementManager') )->shouldBeAnInstanceOf( \CirclicalUser\Form\UserForm::class );
+    }
+
+    function it_can_create_forms_without_captcha()
+    {
+        $this->setCreationOptions(['captcha' => false, 'country' => 'US' ]);
+        $ret = $this->createService( $this->getServiceLocator()->get('FormElementManager') );
+        $ret->shouldBeAnInstanceOf( \CirclicalUser\Form\UserForm::class );
+        $ret->getInputFilter()->shouldBeAnInstanceOf( UserInputFilter::class );
+        $ret->getInputFilter()->shouldThrow( \Zend\InputFilter\Exception\InvalidArgumentException::class )->during( 'get', ['g-recaptcha-response'] );
+    }
+
+    function it_can_create_forms_with_captcha()
+    {
+        $this->setCreationOptions(['captcha' => true, 'country' => 'US' ]);
+        $ret = $this->createService( $this->getServiceLocator()->get('FormElementManager') );
+        $ret->shouldBeAnInstanceOf( \CirclicalUser\Form\UserForm::class );
+        $ret->getInputFilter()->shouldBeAnInstanceOf( UserInputFilter::class );
+        $ret->getInputFilter()->get('g-recaptcha-response')->shouldBeAnInstanceOf( \Zend\InputFilter\Input::class );
+    }
+}
+```
 
 The glue this system provides, is that it loads the SM into your test object -- as per how it was configured in your application.
