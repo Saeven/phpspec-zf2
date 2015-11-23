@@ -1,6 +1,7 @@
 # phpspec-zf2
 
 Zend Framework 2 extension for the excellent PHPSPEC BDD test system.
+Come chat about it with me here http://circlical.com/blog/2015/11/23/zend-framework-2-and-phpspec
 
 ## Why?
 
