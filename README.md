@@ -16,6 +16,7 @@ Then, configure your phpspec.yml file.  I put mine in the base folder, right nex
 
 **phpspec.yml**
 
+```
   suites:
       Application:
           namespace: Application
@@ -29,7 +30,7 @@ Then, configure your phpspec.yml file.  I put mine in the base folder, right nex
           spec_path: module/CirclicalUser/bundle
   extensions:
     - PhpSpec\ZendFramework2\Extension\ZendFramework2Extension
-
+```
 
 Separately...
 `ln -s ./vendor/bin/phpspec ./phpspec`
