@@ -41,21 +41,7 @@ class ZendFramework2Extension implements ExtensionInterface
             $zf2ModulePaths[] = $path;
         }
 
-        $app_config = require getcwd() . '/config/application.config.php';
-
-        // use ModuleManager to load this module and it's dependencies
-        $config = [
-            'module_listener_options' => [
-		        'config_glob_paths'    => [
-		           getcwd() .'/config/autoload/{,*.}{global,local}.php',
-		        ],
-		        'module_paths' => [
-		            getcwd() . '/module',
-		            getcwd() . '/vendor',
-		        ],
-		    ],
-            'modules' => $app_config['modules'],
-        ];
+        $config = require getcwd() . '/config/application.config.php';
 
         $container->setShared(
             'zf2',
